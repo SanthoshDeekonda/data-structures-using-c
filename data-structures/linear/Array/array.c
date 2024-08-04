@@ -6,6 +6,7 @@ int* allocate_memory(int size, int* arr);
 void display_array(int* arr, int start, int size);
 int display_home();
 int array_selection();
+void insert_elements(int* arr, int size, int start);
 
 int selection,d_size,n_ele,user_choice,proceed = 1;
 
@@ -34,8 +35,23 @@ int main(){
                 }
                 break;
             case 2:
-                
-                
+                user_choice = array_selection();
+                if(user_choice == 1){
+                    insert_elements(Static_Array,SIZE,0);
+                }else if(user_choice == 2){
+                    if(dynamic_array == NULL){
+                        printf("\ndynamic array is not craeted or not allocated memory!");
+                        break;
+                    }else{
+                        insert_elements(dynamic_array,d_size,n_ele);
+                        n_ele = d_size;
+                    }
+                }else{
+                    printf("Somthng went wrong");
+                    break;
+                }
+                printf("\nInsertion successful");
+                break;
         }
     }
     
@@ -70,7 +86,7 @@ int display_home(){
     printf("\n5.exit");
     printf("\nSelect option: ");
     scanf("%d",&user_selection);
-    system('cls');
+    system("cls");
 
     return user_selection;
 }
@@ -79,4 +95,15 @@ int array_selection(){
     int arr;
     printf("\n1.static Array\n2.Dynamic array\nChoice: ");
     scanf("%d", &arr);
+
+    return arr;
+}
+
+void insert_elements(int* arr, int size, int start){
+    int ele;
+    for(int i=start; i<size; i++){
+        printf("Enter the Element at index %d: ",i);
+        scanf("%d",&ele);
+        arr[i] = ele;
+    }
 }
