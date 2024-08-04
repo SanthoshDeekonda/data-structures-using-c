@@ -15,6 +15,7 @@ typedef struct LinkedList{
 }Singlelinkedlist;
 
 Singlelinkedlist* init_single_LinkedList();
+Node* createNode(int data);
 
 
 Singlelinkedlist* myList;
@@ -32,4 +33,12 @@ Singlelinkedlist* init_single_LinkedList(){
     new_list->head = NULL;
 
     return new_list;
+}
+
+Node* createNode(int data){
+    Node* new_node = (Node*)malloc(sizeof(Node));
+    new_node->data = data;
+    new_node->next = NULL;
+
+    return new_node;
 }
