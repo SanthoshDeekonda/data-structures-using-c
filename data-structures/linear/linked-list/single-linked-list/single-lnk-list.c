@@ -18,6 +18,8 @@ Singlelinkedlist* init_single_LinkedList();
 Node* createNode(int data);
 bool isEmpty(Singlelinkedlist* LinkedList);
 bool add_at_end(int data, Singlelinkedlist** LinkedList);
+bool add_at_front(int data, Singlelinkedlist** LinkedList);
+
 
 
 Singlelinkedlist* myList;
@@ -25,6 +27,7 @@ Singlelinkedlist* myList;
 int main(){
 
     myList = init_single_LinkedList();
+
 
 
     
@@ -69,4 +72,10 @@ bool add_at_end(int data, Singlelinkedlist** LinkedList){
     }
 
     return false;
+}
+
+bool add_at_front(int data, Singlelinkedlist** LinkedList){
+    Node* new_node = createNode(data);
+    new_node->next = (*LinkedList)->head;
+    (*LinkedList)->head = new_node;
 }
