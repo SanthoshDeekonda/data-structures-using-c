@@ -9,9 +9,19 @@ int display();//declaring display function
 int* dynamic_array(int size);//declaring dynamic array function
 void display_array(int length, int* array);//declaring function to display array
 
-int main(){
+void add_elements(int* array, int size);
 
-    
+int main(){
+    int proceed = 1;
+    while(proceed){
+        int user_selection = display();
+        switch(user_selection){
+            case 1:
+                add_elements(int_arr,SIZE);
+                proceed = 0;
+        }
+    }
+
 
     return 0;
 }
@@ -29,3 +39,11 @@ int display(){
     scanf("%d",&selection);
 }
 
+void add_elements(int* array, int size){
+    int input_data;
+    for(int i=0; i<size; i++){
+        printf("Enter integer: ");
+        scanf("%d", &input_data);
+        array[i] = input_data;
+    }
+}
