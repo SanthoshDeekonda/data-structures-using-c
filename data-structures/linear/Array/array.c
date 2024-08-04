@@ -47,11 +47,28 @@ int main(){
                         n_ele = d_size;
                     }
                 }else{
-                    printf("Somthng went wrong");
+                    printf("\nSomthng went wrong");
                     break;
                 }
                 printf("\nInsertion successful");
                 break;
+            case 3:
+                user_choice = array_selection();
+                if(user_choice == 1){
+                    display_array(Static_Array,0,SIZE);
+                }else if(user_choice == 2){
+                    if(dynamic_array != NULL){
+                        display_array(dynamic_array,0,d_size);
+                    }else{
+                        printf("\narray is empty");
+                        break;
+                    }
+                }else{
+                    printf("\nSomthng went wrong");
+                }
+
+                break;
+
         }
     }
     
@@ -73,7 +90,8 @@ int* allocate_memory(int size, int* arr){
 
 void display_array(int* arr, int start, int size){
     for(int i = start; i<size; i++){
-        printf("[%d] at index-> %d\n",arr[i],i);
+        printf("[%d] at index-> %d address:- %p\n",arr[i],i,&arr[i]);
+
     }
 }
 
@@ -81,8 +99,8 @@ int display_home(){
     int user_selection;
     printf("\n1.create dynamic array");
     printf("\n2.insert elements");
-    printf("\n3.access with index");
-    printf("\n4.display");
+    printf("\n3.display");
+    printf("\n4.access with index");
     printf("\n5.exit");
     printf("\nSelect option: ");
     scanf("%d",&user_selection);
