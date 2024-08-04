@@ -4,6 +4,8 @@
 
 //declaring a static integer array
 int int_arr[SIZE];
+int* int_dynamic_arr;
+
 
 int display();//declaring display function
 int* dynamic_array(int size);//declaring dynamic array function
@@ -12,13 +14,14 @@ void display_array(int length, int* array);//declaring function to display array
 void add_elements(int* array, int size);
 
 int main(){
+    int_dynamic_arr = NULL;
     int proceed = 1;
     while(proceed){
         int user_selection = display();
         switch(user_selection){
             case 1:
                 add_elements(int_arr,SIZE);
-                proceed = 0;
+                printf("\n 10 elemnts added to the static array");
         }
     }
 
