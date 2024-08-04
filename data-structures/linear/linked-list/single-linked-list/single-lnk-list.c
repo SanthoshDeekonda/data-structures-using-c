@@ -3,6 +3,16 @@
 #include <stdbool.h>
 
 
+//node structure
+typedef struct Block{
+    int data;
+    struct Block* next;
+}Node;
+
+//linked list structured 
+typedef struct LinkedList{
+    Node* head;
+}Singlelinkedlist;
 
 
 
