@@ -7,13 +7,15 @@ void display_array(int* arr, int start, int size);
 int display_home();
 int array_selection();
 void insert_elements(int* arr, int size, int start);
+void inspect_element(int index, int* arr);
 
 int selection,d_size,n_ele,user_choice,proceed = 1;
+int indx;
 
 int main(){
     int Static_Array[SIZE];
     int* dynamic_array = NULL;
-    while(proceed){
+    while(selection != 5){
         selection = display_home();
         switch(selection){
             case 1:
@@ -40,7 +42,7 @@ int main(){
                     insert_elements(Static_Array,SIZE,0);
                 }else if(user_choice == 2){
                     if(dynamic_array == NULL){
-                        printf("\ndynamic array is not craeted or not allocated memory!");
+                        printf("\ndynamic array is not created or not allocated memory!");
                         break;
                     }else{
                         insert_elements(dynamic_array,d_size,n_ele);
@@ -64,11 +66,42 @@ int main(){
                         break;
                     }
                 }else{
-                    printf("\nSomthng went wrong");
+                    printf("\nsomething went wrong");
                 }
-
+                break;
+            
+            case 4:
+                user_choice = array_selection();
+                if(user_choice == 1){
+                    display_array(Static_Array,0,SIZE);
+                    printf("\nEnter the index of the element: ");
+                    scanf("%d",&indx);
+                    inspect_element(indx,Static_Array);
+                    display_array(Static_Array,0,SIZE);
+                }else if(user_choice == 2){
+                    if(dynamic_array != NULL){
+                        display_array(dynamic_array,0,d_size);
+                        printf("\nEnter the index of the element: ");
+                        scanf("%d",&indx);
+                        inspect_element(indx,dynamic_array);
+                        printf("\n");
+                        display_array(dynamic_array,0,d_size);
+                    }else{
+                       printf("\ndynamic array is not created or not allocated memory!");
+                    }
+                    
+                }else{
+                    printf("\nsomething went wrong");
+                }
+                break;
+            case 5:
+                system("cls");
+                printf("\nterminated");
                 break;
 
+            default:
+                printf("\ncheck the option");
+                break;
         }
     }
     
@@ -123,5 +156,17 @@ void insert_elements(int* arr, int size, int start){
         printf("Enter the Element at index %d: ",i);
         scanf("%d",&ele);
         arr[i] = ele;
+    }
+}
+
+void inspect_element(int index, int* arr){
+    int mode_selection,new_ele;
+    printf("Element:- %d\nIndex:- %d\n Address:- %p",arr[index],index,&arr[index]);
+    printf("\nDo you want to modify the element(0/1): ");
+    scanf("%d",&mode_selection);
+    if(mode_selection == 1){
+        printf("Enter the new element: ");
+        scanf("%d",&new_ele);
+        arr[index] = new_ele;
     }
 }
