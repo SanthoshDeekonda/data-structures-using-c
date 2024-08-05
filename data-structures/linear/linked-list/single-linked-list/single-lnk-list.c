@@ -20,6 +20,7 @@ bool isEmpty(Singlelinkedlist* LinkedList);
 bool add_at_end(int data, Singlelinkedlist** LinkedList);
 bool add_at_front(int data, Singlelinkedlist** LinkedList);
 int delete_end_node(Singlelinkedlist** LinkedList);
+int delete_front_node(Singlelinkedlist** LinkedList);
 
 
 
@@ -28,6 +29,7 @@ Singlelinkedlist* myList;
 int main(){
 
     myList = init_single_LinkedList();
+    
 
     
     return 0;
@@ -106,6 +108,21 @@ int delete_end_node(Singlelinkedlist** LinkedList){
     }else{
         printf("\nList is empty");
 
+        return -1;
+    }
+}
+
+int delete_front_node(Singlelinkedlist** LinkedList){
+    if(!isEmpty(*LinkedList)){
+        int data;
+        Node* temp = (*LinkedList)->head;
+        (*LinkedList)->head = (*LinkedList)->head->next;
+        data = temp->data;
+        free(temp);
+
+        return data;
+    }else{
+        printf("\nList is empty");
         return -1;
     }
 }
