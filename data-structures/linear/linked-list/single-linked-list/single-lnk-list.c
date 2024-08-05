@@ -19,6 +19,7 @@ Node* createNode(int data);
 bool isEmpty(Singlelinkedlist* LinkedList);
 bool add_at_end(int data, Singlelinkedlist** LinkedList);
 bool add_at_front(int data, Singlelinkedlist** LinkedList);
+int delete_end_node(Singlelinkedlist** LinkedList);
 
 
 
@@ -28,11 +29,7 @@ int main(){
 
     myList = init_single_LinkedList();
 
-
-
     
-
-
     return 0;
 }
 
@@ -80,4 +77,35 @@ bool add_at_front(int data, Singlelinkedlist** LinkedList){
     (*LinkedList)->head = new_node;
 
     return true;
+}
+
+int delete_end_node(Singlelinkedlist** LinkedList){
+    if(!isEmpty(*LinkedList)){
+        Node* current = (*LinkedList)->head;
+        Node* prev = NULL;
+        int data;
+
+        while(current->next){
+            prev = current;
+            current = current->next;
+        }
+        
+        if(prev != NULL){
+            prev->next = NULL;
+            data = current->data;
+            free(current);
+            return data;
+        }
+
+        data = current->data;
+        free(current);
+        (*LinkedList)->head = NULL;
+
+        return data;
+
+    }else{
+        printf("\nList is empty");
+
+        return -1;
+    }
 }
