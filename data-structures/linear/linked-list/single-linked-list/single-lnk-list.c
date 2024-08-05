@@ -20,6 +20,7 @@ Node* createNode(int data);
 bool isEmpty(Singlelinkedlist* LinkedList);
 bool add_at_end(int data, Singlelinkedlist** LinkedList);
 bool add_at_front(int data, Singlelinkedlist** LinkedList);
+bool add_at_position(int data, int pos, Singlelinkedlist** LinkedList);
 int delete_end_node(Singlelinkedlist** LinkedList);
 int delete_front_node(Singlelinkedlist** LinkedList);
 int delete_at_position(int pos, Singlelinkedlist** LinkedList);
@@ -33,6 +34,7 @@ Singlelinkedlist* myList;
 int main(){
 
     myList = init_single_LinkedList();
+    
     
     
     return 0;
@@ -62,7 +64,7 @@ bool add_at_end(int data, Singlelinkedlist** LinkedList){
     Node* new_node = createNode(data);
     if(isEmpty(*LinkedList)){
         (*LinkedList)->head = new_node;
-
+        arrange_position(LinkedList);
         return true;
     }else{
         Node* current = (*LinkedList)->head;
@@ -70,7 +72,7 @@ bool add_at_end(int data, Singlelinkedlist** LinkedList){
             current = current->next;
         }
         current->next = new_node;
-
+        arrange_position(LinkedList);
         return true;
     }
 
@@ -81,6 +83,7 @@ bool add_at_front(int data, Singlelinkedlist** LinkedList){
     Node* new_node = createNode(data);
     new_node->next = (*LinkedList)->head;
     (*LinkedList)->head = new_node;
+    arrange_position(LinkedList);
 
     return true;
 }
@@ -106,7 +109,7 @@ int delete_end_node(Singlelinkedlist** LinkedList){
         data = current->data;
         free(current);
         (*LinkedList)->head = NULL;
-
+        arrange_position(LinkedList);
         return data;
 
     }else{
@@ -123,7 +126,7 @@ int delete_front_node(Singlelinkedlist** LinkedList){
         (*LinkedList)->head = (*LinkedList)->head->next;
         data = temp->data;
         free(temp);
-
+        arrange_position(LinkedList);
         return data;
     }else{
         printf("\nList is empty");
@@ -142,7 +145,7 @@ void arrange_position(Singlelinkedlist** LinkedList){
 
 int delete_at_position(int pos, Singlelinkedlist** LinkedList){
     if(!isEmpty(*LinkedList)){
-        int i=1,data;
+        int data;
         Node* current = (*LinkedList)->head;
         Node* prev = NULL;
         Node* temp = NULL;
@@ -152,7 +155,7 @@ int delete_at_position(int pos, Singlelinkedlist** LinkedList){
             (*LinkedList)->head = (*LinkedList)->head->next;
             data = temp->data;
             free(temp);
-
+            
             return data;
         }
 
@@ -171,7 +174,7 @@ int delete_at_position(int pos, Singlelinkedlist** LinkedList){
         prev->next = current->next;
         data = temp->data;
         free(temp);
-
+        arrange_position(LinkedList);
         return data;
     }else{
         printf("\nList is empty");
@@ -179,4 +182,34 @@ int delete_at_position(int pos, Singlelinkedlist** LinkedList){
         return -1;
     }
     
+}
+
+bool add_at_position(int data, int pos, Singlelinkedlist** LinkedList){
+    Node* current = (*LinkedList)->head;
+    Node* prev = NULL;
+    if(isEmpty(*LinkedList) || pos == 0){
+        add_at_front(data, LinkedList);
+        arrange_position(LinkedList);
+
+        return true;
+    }
+
+    while(current != NULL && current->pos != pos){
+        prev = current;
+        current = current->next;
+    }
+
+    if(current == NULL){
+        printf("\n Index out of List length adding data at end!");
+        add_at_end(data,LinkedList);
+        return true;
+    }
+
+    Node* new_node = createNode(data);
+    prev->next = new_node;
+    new_node->next = current;
+    arrange_position(LinkedList);
+
+    return true;
+
 }
