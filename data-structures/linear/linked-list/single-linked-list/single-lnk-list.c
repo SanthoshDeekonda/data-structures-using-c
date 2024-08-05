@@ -6,6 +6,7 @@
 //node structure
 typedef struct Block{
     int data;
+    int pos;
     struct Block* next;
 }Node;
 
@@ -21,6 +22,7 @@ bool add_at_end(int data, Singlelinkedlist** LinkedList);
 bool add_at_front(int data, Singlelinkedlist** LinkedList);
 int delete_end_node(Singlelinkedlist** LinkedList);
 int delete_front_node(Singlelinkedlist** LinkedList);
+void arrange_position(Singlelinkedlist** LinkedList);
 
 
 
@@ -29,6 +31,8 @@ Singlelinkedlist* myList;
 int main(){
 
     myList = init_single_LinkedList();
+
+
     
 
     
@@ -45,6 +49,7 @@ Singlelinkedlist* init_single_LinkedList(){
 Node* createNode(int data){
     Node* new_node = (Node*)malloc(sizeof(Node));
     new_node->data = data;
+    new_node->pos = 0;
     new_node->next = NULL;
 
     return new_node;
@@ -124,5 +129,14 @@ int delete_front_node(Singlelinkedlist** LinkedList){
     }else{
         printf("\nList is empty");
         return -1;
+    }
+}
+
+void arrange_position(Singlelinkedlist** LinkedList){
+    int index_pos = 0;
+    Node* current = (*LinkedList)->head;
+    while(current){
+        current->pos = index_pos++;
+        current = current->next;
     }
 }
