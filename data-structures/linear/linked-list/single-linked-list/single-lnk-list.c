@@ -22,7 +22,9 @@ bool add_at_end(int data, Singlelinkedlist** LinkedList);
 bool add_at_front(int data, Singlelinkedlist** LinkedList);
 int delete_end_node(Singlelinkedlist** LinkedList);
 int delete_front_node(Singlelinkedlist** LinkedList);
+int delete_at_position(int pos, Singlelinkedlist** LinkedList);
 void arrange_position(Singlelinkedlist** LinkedList);
+
 
 
 
@@ -31,10 +33,7 @@ Singlelinkedlist* myList;
 int main(){
 
     myList = init_single_LinkedList();
-
-
     
-
     
     return 0;
 }
@@ -139,4 +138,45 @@ void arrange_position(Singlelinkedlist** LinkedList){
         current->pos = index_pos++;
         current = current->next;
     }
+}
+
+int delete_at_position(int pos, Singlelinkedlist** LinkedList){
+    if(!isEmpty(*LinkedList)){
+        int i=1,data;
+        Node* current = (*LinkedList)->head;
+        Node* prev = NULL;
+        Node* temp = NULL;
+
+        if(pos == 0){
+            temp = (*LinkedList)->head;
+            (*LinkedList)->head = (*LinkedList)->head->next;
+            data = temp->data;
+            free(temp);
+
+            return data;
+        }
+
+        while(current != NULL && current->pos != pos){
+            prev = current;
+            current = current->next;
+        }
+
+        if(current == NULL){
+            printf("\n Check the index you enterd and try again");
+
+            return -1;
+        }
+
+        temp = current;
+        prev->next = current->next;
+        data = temp->data;
+        free(temp);
+
+        return data;
+    }else{
+        printf("\nList is empty");
+
+        return -1;
+    }
+    
 }
