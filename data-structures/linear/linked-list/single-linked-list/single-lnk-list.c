@@ -78,4 +78,6 @@ bool add_at_front(int data, Singlelinkedlist** LinkedList){
     Node* new_node = createNode(data);
     new_node->next = (*LinkedList)->head;
     (*LinkedList)->head = new_node;
+
+    return true;
 }
