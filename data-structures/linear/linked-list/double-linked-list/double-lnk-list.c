@@ -20,6 +20,9 @@ bool add_at_end(int data, DoubleLinkedList** list);
 bool add_at_front(int data, DoubleLinkedList** list);
 bool isEmpty(DoubleLinkedList* list);
 void arrange_index(DoubleLinkedList** list);
+int delete_at_end(DoubleLinkedList** list);
+int delete_at_front(DoubleLinkedList** list);
+
 
 
 
@@ -28,7 +31,7 @@ DoubleLinkedList* mylist;
 int main(){
 
     mylist = init_double_list();
-    
+   
 
 
     return 0;
@@ -105,4 +108,22 @@ void arrange_index(DoubleLinkedList** list){
             i++;
         }
     }
+}
+
+int delete_at_end(DoubleLinkedList** list){
+    Node* current = (*list)->head;
+    int data;
+    if(!isEmpty(*list)){
+        while(current->next){
+            current = current->next;
+        }
+
+        current->prev->next = NULL;
+        current->prev = NULL;
+        data = current->data;
+
+        return data;
+    }
+
+    return -1;
 }
