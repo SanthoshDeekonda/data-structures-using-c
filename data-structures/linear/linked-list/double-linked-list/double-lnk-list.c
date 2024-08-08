@@ -16,8 +16,19 @@ typedef struct DoubleLinkedList{
 
 DoubleLinkedList* init_double_list();
 Node* createNode(int data);
+bool add_at_end(int data, DoubleLinkedList** list);
+bool add_at_front(int data, DoubleLinkedList** list);
+bool isEmpty(DoubleLinkedList* list);
+void arrange_index(DoubleLinkedList** list);
+
+
+
+DoubleLinkedList* mylist;
 
 int main(){
+
+    mylist = init_double_list();
+    
 
 
     return 0;
@@ -40,3 +51,58 @@ Node* createNode(int data){
     return new_node;
 }
 
+bool isEmpty(DoubleLinkedList *list){
+    return list->head == NULL;
+}
+
+bool add_at_end(int data, DoubleLinkedList** list){
+    Node* new_node = createNode(data);
+    if(isEmpty(*list)){
+        (*list)->head = new_node;
+        arrange_index(list);
+
+        return true;
+    }else{
+        Node* current = (*list)->head;
+        while(current->next){
+            current = current->next;
+        }
+
+        new_node->prev = current;
+        current->next = new_node;
+        arrange_index(list);
+        return true;
+    }
+
+    return false;
+}
+
+bool add_at_front(int data, DoubleLinkedList** list){
+    Node* new_node = createNode(data);
+    if(isEmpty(*list)){
+        (*list)->head = new_node;
+        arrange_index(list);
+        return true;
+    }else{
+        new_node->next = (*list)->head;
+        (*list)->head->prev = new_node;
+        (*list)->head = new_node;
+        arrange_index(list);
+        return true;
+        
+    }
+
+    return false;
+}
+
+void arrange_index(DoubleLinkedList** list){
+    if(!isEmpty(*list)){
+        Node* current = (*list)->head;
+        int i=0;
+        while(current){
+            current->pos = i;
+            current = current->next;
+            i++;
+        }
+    }
+}
