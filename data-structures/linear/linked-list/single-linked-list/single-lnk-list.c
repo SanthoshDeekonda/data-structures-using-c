@@ -35,7 +35,19 @@ Singlelinkedlist* myList;
 int main(){
 
     myList = init_single_LinkedList();
-    
+    add_at_end(1,&myList);
+    add_at_end(2,&myList);
+    add_at_end(3,&myList);
+    add_at_front(0,&myList);
+    add_at_front(-1,&myList);
+    add_at_front(-2,&myList);
+    add_at_front(-3,&myList);
+    display(&myList);
+    delete_end_node(&myList);
+    delete_front_node(&myList);
+    delete_at_position(3,&myList);
+    printf("\n\n");
+    display(&myList);
     
     return 0;
 }
