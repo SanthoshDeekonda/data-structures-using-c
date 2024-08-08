@@ -25,6 +25,7 @@ int delete_end_node(Singlelinkedlist** LinkedList);
 int delete_front_node(Singlelinkedlist** LinkedList);
 int delete_at_position(int pos, Singlelinkedlist** LinkedList);
 void arrange_position(Singlelinkedlist** LinkedList);
+void display(Singlelinkedlist** LinkedList);
 
 
 
@@ -34,7 +35,6 @@ Singlelinkedlist* myList;
 int main(){
 
     myList = init_single_LinkedList();
-    
     
     
     return 0;
@@ -212,4 +212,21 @@ bool add_at_position(int data, int pos, Singlelinkedlist** LinkedList){
 
     return true;
 
+}
+
+
+void display(Singlelinkedlist** LinkedList){
+    if(!isEmpty(*LinkedList)){
+        Node* current = (*LinkedList)->head;
+
+        while(current){
+            printf("___________________________\n");
+            printf("| %p  |position:- %d  |",current,current->pos);
+            printf("\n----------------------------");
+            printf("\n|data:-(%d)|next:-(%p)|",current->data,current->next);
+            printf("\n|__________________________|\n");
+
+            current = current->next;
+        }
+    }
 }
