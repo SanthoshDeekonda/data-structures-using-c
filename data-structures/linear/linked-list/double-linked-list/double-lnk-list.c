@@ -6,5 +6,14 @@ typedef struct Block{
     int data;
     struct Block* next;
     struct Block* prev;
-}node;
+}Node;
 
+typedef struct DoubleLinkedList{
+    Node* head;
+}DoubleLinkedList;
+
+int main(){
+
+
+    return 0;
+}
