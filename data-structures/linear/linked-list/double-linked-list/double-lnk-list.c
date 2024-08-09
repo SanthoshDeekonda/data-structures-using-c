@@ -31,7 +31,22 @@ DoubleLinkedList* mylist;
 int main(){
 
     mylist = init_double_list();
-   
+    add_at_end(1,&mylist);
+    add_at_end(3,&mylist);
+    add_at_end(4,&mylist);
+    add_at_end(5,&mylist);
+   // delete_at_end(&mylist);
+   // delete_at_end(&mylist);
+    delete_at_front(&mylist);
+    delete_at_front(&mylist);
+    
+
+    Node* temp = mylist->head;
+
+    while(temp){
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
 
 
     return 0;
@@ -121,6 +136,24 @@ int delete_at_end(DoubleLinkedList** list){
         current->prev->next = NULL;
         current->prev = NULL;
         data = current->data;
+
+        free(current);
+
+        return data;
+    }
+
+    return -1;
+}
+
+int delete_at_front(DoubleLinkedList** list){
+    if(!isEmpty(*list)){
+        int data;
+        Node* temp = (*list)->head;
+        (*list)->head->next->prev = NULL;
+        (*list)->head = (*list)->head->next;
+
+        data = temp->data;
+        free(temp);
 
         return data;
     }
