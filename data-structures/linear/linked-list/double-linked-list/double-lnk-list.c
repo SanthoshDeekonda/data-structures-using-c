@@ -24,6 +24,7 @@ int delete_at_end(DoubleLinkedList** list);
 int delete_at_front(DoubleLinkedList** list);
 bool add_at_position(int data, int pos, DoubleLinkedList** list);
 int delete_at_postion(DoubleLinkedList** list, int pos);
+void display(DoubleLinkedList* list);
 
 
 
@@ -45,17 +46,9 @@ int main(){
    // delete_at_end(&mylist);
    // delete_at_front(&mylist);
    // delete_at_front(&mylist);
-   add_at_position(9,10,&mylist);
-   delete_at_postion(&mylist,10);
-    
-
-    Node* temp = mylist->head;
-
-    while(temp){
-        printf("%d ", temp->data);
-        temp = temp->next;
-    }
-
+   //add_at_position(9,10,&mylist);
+   //delete_at_postion(&mylist,10);
+   display(mylist);
 
     return 0;
 }
@@ -227,4 +220,19 @@ int delete_at_postion(DoubleLinkedList** list, int pos){
     }
 
     return -1;
+}
+
+void display(DoubleLinkedList* list){
+    Node* current = list->head;
+
+    while(current){
+            printf("___________________________\n");
+            printf("| %p  |position:- %d  |",current,current->pos);
+            printf("\n----------------------------");
+            printf("\n|data:-(%d)|prev:-(%p)|",current->data,current->prev);
+            printf("\n|next:-(%p)           |",current->next);
+            printf("\n|__________________________|\n");
+
+            current = current->next;
+    }
 }
