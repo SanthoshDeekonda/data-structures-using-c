@@ -22,6 +22,9 @@ bool isEmpty(DoubleLinkedList* list);
 void arrange_index(DoubleLinkedList** list);
 int delete_at_end(DoubleLinkedList** list);
 int delete_at_front(DoubleLinkedList** list);
+bool add_at_position(int data, int pos, DoubleLinkedList** list);
+int delete_at_postion(DoubleLinkedList** list, int pos);
+
 
 
 
@@ -32,13 +35,18 @@ int main(){
 
     mylist = init_double_list();
     add_at_end(1,&mylist);
+    add_at_end(2,&mylist);
     add_at_end(3,&mylist);
     add_at_end(4,&mylist);
     add_at_end(5,&mylist);
+    add_at_front(0,&mylist);
+    add_at_front(-1,&mylist);
    // delete_at_end(&mylist);
    // delete_at_end(&mylist);
-    delete_at_front(&mylist);
-    delete_at_front(&mylist);
+   // delete_at_front(&mylist);
+   // delete_at_front(&mylist);
+   add_at_position(9,10,&mylist);
+   delete_at_postion(&mylist,10);
     
 
     Node* temp = mylist->head;
@@ -155,6 +163,66 @@ int delete_at_front(DoubleLinkedList** list){
         data = temp->data;
         free(temp);
 
+        return data;
+    }
+
+    return -1;
+}
+
+
+bool add_at_position(int data, int pos, DoubleLinkedList** list){
+    Node* new_node = createNode(data);
+    if(isEmpty(*list) || pos == 0){
+        add_at_front(data,list);
+
+        return true;
+    }
+
+    Node* current = (*list)->head;
+
+    while(current != NULL && current->pos != pos){
+        current = current->next;
+    }
+
+    if(current == NULL){
+        printf("\nIndex out of range adding element at end!");
+        add_at_end(data,list);
+
+        return true;
+    }else{
+        new_node->prev = current->prev;
+        new_node->next = current;
+        current->prev->next = new_node;
+        current->prev = new_node;
+
+        arrange_index(&mylist);
+
+        return true;
+    }
+    return false;
+}
+
+int delete_at_postion(DoubleLinkedList** list, int pos){
+    if(!isEmpty(*list) && pos == 0){
+        return delete_at_front(list);
+    }
+
+    Node* current = (*list)->head;
+    while(current != NULL && current->pos != pos){
+        current = current->next;
+    }
+
+    if(current == NULL){
+        printf("\nEnter a valid index");
+
+        return -1;
+    }else{
+        int data;
+        current->prev->next = current->next;
+        current->next->prev = current->prev;
+        data = current->data;
+        free(current);
+        arrange_index(list);
         return data;
     }
 
