@@ -18,10 +18,9 @@ int main(){
     enqueue(3);
     enqueue(4);
     enqueue(5);
+    dequeue();
     display();
     
-
-
     return 0;
 }
 
