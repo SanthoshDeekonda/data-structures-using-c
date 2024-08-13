@@ -20,6 +20,8 @@ int main(){
     push(STACK, 2);
     push(STACK, 3);
     push(STACK, 4);
+    push(STACK, 5);
+    pop(STACK);
 
     display();
    
