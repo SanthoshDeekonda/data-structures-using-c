@@ -9,10 +9,16 @@ bool isEmpty();
 bool isFull();
 bool enqueue(int data);
 int dequeue();
+void display();
 
 int main(){
 
-    
+    enqueue(1);
+    enqueue(2);
+    enqueue(3);
+    enqueue(4);
+    enqueue(5);
+    display();
     
 
 
@@ -52,4 +58,16 @@ int dequeue(){
 
     printf("\nQueue is Empty");
     return false;
+}
+
+void display(){
+    if(!isEmpty()){
+        printf("[");
+        for(int i=front; i<=rear; i++){
+            printf(" %d",Queue[i]);
+        }
+        printf(" ]");
+    }else{
+        printf("\nQueue is Empty");
+    }
 }
