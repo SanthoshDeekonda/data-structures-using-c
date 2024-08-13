@@ -16,6 +16,8 @@ Queue* init_queue();
 Node* create_node(int data);
 bool enqueue(Queue** queue, int data);
 bool isEmpty(Queue* queue);
+int dequeue(Queue** queue);
+void display(Queue* queue);
 
 
 int main(){
@@ -24,6 +26,8 @@ int main(){
     enqueue(&myqueue,1);
     enqueue(&myqueue,2);
     enqueue(&myqueue,3);
+    dequeue(&myqueue);
+    display(myqueue);
     
     
 
@@ -65,4 +69,30 @@ bool enqueue(Queue** queue, int data){
     }
 
     return false;
+}
+
+int dequeue(Queue** queue){
+    if(!isEmpty((*queue))){
+        Node* temp = (*queue)->front;
+        int data = temp->data;
+        (*queue)->front = (*queue)->front->next;
+        free(temp);
+
+        return data;
+    }else{
+        printf("\nqueue is empty");
+
+        return -1;
+    }
+}
+
+void display(Queue* queue){
+    if(!isEmpty(queue)){
+        Node* current = queue->front;
+
+        while(current){
+            printf("%d ", current->data);
+            current = current->next;
+        }
+    }
 }
