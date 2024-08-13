@@ -13,12 +13,13 @@ typedef struct stack{
 }Stack;
 
 Stack* init_stack();
+Node* create_node(int data);
 
 
 int main(){
 
     Stack* mystack = init_stack();
-   
+    
 
     return 0;
 }
@@ -28,4 +29,13 @@ Stack* init_stack(){
     new_stack->top = NULL;
 
     return new_stack;
+}
+
+Node* create_node(int data){
+    Node* new_node = (Node*)malloc(sizeof(Node));
+    new_node->data = data;
+    new_node->prev = NULL;
+    new_node->next = NULL;
+
+    return new_node;
 }
