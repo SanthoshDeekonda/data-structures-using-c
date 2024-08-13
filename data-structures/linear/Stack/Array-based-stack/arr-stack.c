@@ -9,9 +9,12 @@ int STACK[SIZE],top = -1;
 bool push(int* stack, int data);
 bool isEmpty(int top);
 bool isFull(int top);
+int pop(int* stack);
 
 
 int main(){
+
+    
 
 
     return 0;
@@ -32,5 +35,15 @@ bool push(int* stack, int data){
     }else{
         printf("\nStack overflow");
         return false;
+    }
+}
+
+int pop(int* stack){
+    if(!isEmpty(top)){
+        return stack[top--];
+    }else{
+        printf("\nStack is Empty");
+
+        return -1;
     }
 }
