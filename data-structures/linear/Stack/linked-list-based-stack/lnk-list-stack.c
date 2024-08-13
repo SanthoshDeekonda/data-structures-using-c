@@ -27,6 +27,8 @@ int main(){
     push(&mystack, 1);
     push(&mystack, 2);
     push(&mystack,3);
+    push(&mystack,4);
+    pop(&mystack);
     display(mystack);
     return 0;
 }
