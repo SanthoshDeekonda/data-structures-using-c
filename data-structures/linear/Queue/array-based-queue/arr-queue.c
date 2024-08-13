@@ -3,25 +3,34 @@
 #define SIZE 5
 
 
-int Queue[SIZE],front = -1,top = -1;
+int Queue[SIZE],front = 0,rear = -1;
 
 bool isEmpty();
 bool isFull();
+bool enqueue(int data);
 
 
 int main(){
 
-    printf("%d", isEmpty());
-    printf("%d", isFull());
+    
+    
 
 
     return 0;
 }
 
 bool isEmpty(){
-    return front == -1 && top == -1;
+    return rear == -1;
 }
 
 bool isFull(){
-    return top == (SIZE - 1);
+    return rear == (SIZE - 1);
+}
+
+bool enqueue(int data){
+    if(!isFull()){
+        Queue[++rear] = data;
+    }else{
+        printf("\nqueue is Empty");
+    }
 }
