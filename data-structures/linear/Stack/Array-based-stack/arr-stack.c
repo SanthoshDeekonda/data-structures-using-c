@@ -10,13 +10,12 @@ bool push(int* stack, int data);
 bool isEmpty(int top);
 bool isFull(int top);
 int pop(int* stack);
+int peek(int* stack);
 
 
 int main(){
 
-    
-
-
+   
     return 0;
 }
 
@@ -46,4 +45,8 @@ int pop(int* stack){
 
         return -1;
     }
+}
+
+int peek(int* stack){
+    return stack[top];
 }
