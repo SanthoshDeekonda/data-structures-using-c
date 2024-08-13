@@ -18,6 +18,7 @@ bool isEmpty(Stack* stack);
 bool push(Stack** stack, int data);
 int pop(Stack** stack);
 int peek(Stack* stack);
+void display(Stack* stack);
 
 
 int main(){
@@ -25,8 +26,8 @@ int main(){
     Stack* mystack = init_stack();
     push(&mystack, 1);
     push(&mystack, 2);
-
-
+    push(&mystack,3);
+    display(mystack);
     return 0;
 }
 
@@ -74,4 +75,16 @@ int pop(Stack** stack){
 
 int peek(Stack* stack){
     return stack->top->data;
+}
+
+void display(Stack* stack){
+    if(!isEmpty(stack)){
+        Node* current = stack->top;
+        while(current){
+            printf("\n|%d|", current->data);
+            current = current->prev;
+        }
+    }else{
+        printf("\nStack is Empty");
+    }
 }
