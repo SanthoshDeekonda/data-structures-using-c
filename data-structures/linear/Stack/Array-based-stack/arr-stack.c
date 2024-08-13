@@ -11,10 +11,17 @@ bool isEmpty(int top);
 bool isFull(int top);
 int pop(int* stack);
 int peek(int* stack);
+void display();
 
 
 int main(){
 
+    push(STACK, 1);
+    push(STACK, 2);
+    push(STACK, 3);
+    push(STACK, 4);
+
+    display();
    
     return 0;
 }
@@ -49,4 +56,12 @@ int pop(int* stack){
 
 int peek(int* stack){
     return stack[top];
+}
+
+void display(){
+    if(!isEmpty(top)){
+        for(int i=top; i>=0; i--){
+            printf("\n|%d|", STACK[i]);
+        }
+    }
 }
