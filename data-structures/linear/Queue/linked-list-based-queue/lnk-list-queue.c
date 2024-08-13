@@ -21,6 +21,9 @@ bool isEmpty(Queue* queue);
 int main(){
 
     Queue* myqueue = init_queue();
+    enqueue(&myqueue,1);
+    enqueue(&myqueue,2);
+    enqueue(&myqueue,3);
     
     
 
@@ -45,4 +48,21 @@ Node* create_node(int data){
 
 bool isEmpty(Queue* queue){
     return queue->front == NULL;
+}
+
+bool enqueue(Queue** queue, int data){
+    Node* new_node = create_node(data);
+    if(isEmpty((*queue))){
+        (*queue)->front = new_node;
+        (*queue)->rear = new_node;
+
+        return true;
+    }else{
+        (*queue)->rear->next = new_node;
+        (*queue)->rear = new_node;
+
+        return true;
+    }
+
+    return false;
 }
