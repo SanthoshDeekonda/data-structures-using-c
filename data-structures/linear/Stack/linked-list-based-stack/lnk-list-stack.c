@@ -15,13 +15,14 @@ typedef struct stack{
 Stack* init_stack();
 Node* create_node(int data);
 bool isEmpty(Stack* stack);
-bool push(Stack* stack, int data);
+bool push(Stack** stack, int data);
 
 
 int main(){
 
     Stack* mystack = init_stack();
-   
+    push(&mystack, 1);
+    push(&mystack, 2);
 
     return 0;
 }
@@ -44,4 +45,12 @@ Node* create_node(int data){
 
 bool isEmpty(Stack* stack){
     return stack->top == NULL;
+}
+
+bool push(Stack** stack, int data){
+    Node* new_node = create_node(data);
+    new_node->prev = (*stack)->top;
+    (*stack)->top = new_node;
+
+    return true;
 }
