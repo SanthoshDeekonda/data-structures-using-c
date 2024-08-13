@@ -16,6 +16,7 @@ Stack* init_stack();
 Node* create_node(int data);
 bool isEmpty(Stack* stack);
 bool push(Stack** stack, int data);
+int pop(Stack** stack);
 
 
 int main(){
@@ -23,6 +24,7 @@ int main(){
     Stack* mystack = init_stack();
     push(&mystack, 1);
     push(&mystack, 2);
+   
 
     return 0;
 }
@@ -53,4 +55,18 @@ bool push(Stack** stack, int data){
     (*stack)->top = new_node;
 
     return true;
+}
+
+int pop(Stack** stack){
+    if(!isEmpty((*stack))){
+        Node* temp = (*stack)->top;
+        (*stack)->top = (*stack)->top->prev;
+        (*stack)->top->next = NULL;
+
+        int data = temp->data;
+        free(temp);
+        return data;
+    }else{
+        printf("\nStack is Empty");
+    }
 }
